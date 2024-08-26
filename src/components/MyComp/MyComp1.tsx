@@ -1,22 +1,24 @@
 import React from "react";
 
-export type User = {
+export type Props = {
   id: number;
   name: string;
   birthYear: number;
+  children: React.ReactNode;
 };
 
-const MyComp: React.FC<{ user: User }> = ({ user }) => {
+function MyComp1({ id, name, birthYear, children }: Props) {
   // Обчислення віку на основі року народження
   const currentYear = new Date().getFullYear();
-  const age = currentYear - user.birthYear;
+  const age = currentYear - birthYear;
 
   return (
-    <div>
-      <h1>{user.name}</h1>
+    <div key={id}>
+      <h1>{name}</h1>
       <p>Age: {age}</p>
+      {children}
     </div>
   );
-};
+}
 
-export default MyComp;
+export default MyComp1;
